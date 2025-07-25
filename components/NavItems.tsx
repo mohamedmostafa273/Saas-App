@@ -6,16 +6,14 @@ import { cn } from "@/lib/utils";
 
 const navItems = [
   { label: "Home", href: "/" },
-  { label: "Companions", href: "/companins" },
+  { label: "Companions", href: "/companions" },
   { label: "My Journey", href: "/my-journey" },
 ];
 
-
 const NavItems = () => {
-    const pathname = usePathname();
+  const pathname = usePathname();
   return (
-
-     <nav className="flex items-center gap-4">
+    <nav className="flex items-center gap-4">
       {navItems.map(({ label, href }) => (
         <Link
           href={href}
@@ -26,7 +24,7 @@ const NavItems = () => {
         </Link>
       ))}
     </nav>
-  )
-}
+  );
+};
 
-export default NavItems
+export default NavItems;
