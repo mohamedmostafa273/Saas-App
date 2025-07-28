@@ -5,6 +5,8 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { subjects } from "@/constants";
 import { Textarea } from "@/components/ui/textarea";
+import { createCompanion } from "@/lib/actions/companion.actions";
+import { redirect } from "next/navigation";
 
 import { Button } from "@/components/ui/button";
 import {
@@ -48,8 +50,15 @@ const CompanionForm = () => {
     },
   });
 
-  const onSubmit = (values: CompanionFormData) => {
-    console.log(values);
+  const onSubmit = async (values: CompanionFormData) => {
+     const companion = await createCompanion(values);
+
+    if (companion) {
+      redirect(`/companions/${companion.id}`);
+    } else {
+      console.log("Failed to create a companion");
+      redirect("/");
+    }
   };
 
   return (
